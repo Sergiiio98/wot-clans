@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import Sh_x from "./Sh_x"
+import Sh_vi from "./Sh_vi"
 
 function App() {
   return (
     <div className="App">
-      <Sh_x/>
+      <Sh_vi/>
     </div>
   );
 }

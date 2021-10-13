@@ -1,0 +1,7 @@
+.ClanRow{
+    display: flex;
+}
+
+.ClanRow h5{
+    margin-right: 5px;
+}
