@@ -14,6 +14,7 @@ class Clan extends Component {
         return (
             <div className="ClanRow">
                 <h5>{this.props.clanRank+1}</h5>
+                <img src={this.props.logo}></img>
                 <h5>[{this.props.clanName}]</h5>
                 <h5>{this.props.clanElo}</h5>
             </div>
