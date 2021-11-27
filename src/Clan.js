@@ -13,9 +13,9 @@ class Clan extends Component {
     render() {
         return (
             <div className="ClanRow">
-                <h5>{this.props.clanRank+1}</h5>
-                <img src={this.props.logo}></img>
-                <h5>[{this.props.clanName}]</h5>
+                <h5>{this.props.clanRank}</h5>
+                <img className="logo" src={this.props.logo}></img>
+                <h5 style={{color: this.props.color}}>[{this.props.clanName}]</h5>
                 <h5>{this.props.clanElo}</h5>
             </div>
           );

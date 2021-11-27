@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+  }
+  
+  body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(42, 57, 71);
+  }
+  
+  .load{
+    width: 200px;
+    height: 200px;
+    border-radius: 30%;
+    border: 10px solid transparent;
+    border-top: 10px solid#FF3D00;
+    border-bottom: 10px solid #FF3D00;
+    animation: rotate 1.8s linear infinite;
+  }
+  
+  @keyframes rotate{
+    0%{transform: rotate(0deg);}
+    100%{transform: rotate(360deg);}
+  }
