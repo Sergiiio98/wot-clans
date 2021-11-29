@@ -1,13 +1,29 @@
 .App {
   text-align: center;
-  height: 100vh;
-  background-color: #f7f7f7;
-  margin-top: -2%;
+  height: 90vh;
+  background-color: #000000;
+  border-radius: 5px;
+  margin-top: 20%;
+}
+
+.label{
+  display: flex;
+  padding-left: 93px;
+  margin-bottom: 10px;
+}
+
+.labelbar{
+  margin-left: 160px;
+}
+
+.label h5{
+  width: 80px;
+
 }
 
 .ScrollDiv{
   overflow-y: scroll; 
-  height:100vh;
+  height:92vh;
 }
 
 html::-webkit-scrollbar {
@@ -19,7 +35,10 @@ html::-webkit-scrollbar {
 }
 
 h1{
-  padding-top: 2%;
+ margin: 0px 50px 50px 50px;
+ padding-top: 7%;
+
+  margin-bottom: 50px;
   color: white;
 }
 
@@ -29,6 +48,7 @@ button{
   width: 10.5em;
   height: 2em;
   font-weight: 700;
+  margin-bottom: 7%;
 }
 
 #VIII{

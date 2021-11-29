@@ -5,24 +5,30 @@
   
   body{
     width: 100vw;
-    height: 100vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgb(42, 57, 71);
+    background-image: url(https://static-ptl-eu.gcdn.co/dcont/fb/image/himmelsdorf_wallpaper_1920x1080.jpg);
   }
   
-  .load{
-    width: 200px;
-    height: 200px;
-    border-radius: 30%;
-    border: 10px solid transparent;
-    border-top: 10px solid#FF3D00;
-    border-bottom: 10px solid #FF3D00;
-    animation: rotate 1.8s linear infinite;
+  .loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid orange; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
   }
   
-  @keyframes rotate{
-    0%{transform: rotate(0deg);}
-    100%{transform: rotate(360deg);}
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .loadbox{
+    display: flex;
+    margin-top: 40%;
+    justify-content: center;
   }

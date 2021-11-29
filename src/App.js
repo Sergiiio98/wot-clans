@@ -12,9 +12,16 @@ function App() {
         <button id="VIII">VIII</button>
         <button>VI</button>
       </div>
-      {/* <div className="ScrollDiv"> */}
+      <div className="label">
+        <h5>lp.</h5>
+
+        <h5 className="labelbar">elo rating</h5>
+        <h5>28d</h5>
+        <h5>WR %</h5>
+      </div>
+      <div className="ScrollDiv">
         <Sh_vi/>
-      {/* </div> */}
+      </div>
     </div>
   );
 }
