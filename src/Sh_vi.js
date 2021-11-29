@@ -100,20 +100,32 @@ class Sh_vi extends Component {
         let data = this.generateData();
         console.log(data);
 
+        function apiInfo(){
+            return (
+            <div>
+                <h5 style={{color:'white'}}>due to API overload estimated loading time is about 10-20 sec</h5>
+            </div>
+            )
+        }
+
         const clans = data.map((el, idx) => {
             return <Clan clanName={el.clanTag} clanRank={idx+1} clanElo={el.clanElo} logo={el.clanLogo} color={el.clanColor} clanBattles={el.clanBattles} clanWinrate={(Math.round((el.shWins)/(el.clanBattles)*100)/100)*100}   />;
         });
 
         if(this.state.isLoading === true){
             return(
+                <div>
                 <div className="loadbox">
                     <div class="loader"></div>
                 </div>
+                {apiInfo()}
+                </div>
+               
             )
         }
         
         return (
-            <div>
+            <div className="mainBox">
                
             
                 {clans}
