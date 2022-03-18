@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './Sh_vi.css'
 import axios from 'axios';
 import Clan from './Clan';
-const API_URL = "https://api.worldoftanks.eu/wot/clanratings/top/?application_id=f8ffb59743e6046de8f37f8d0daf6dc5&rank_field=fort_elo_rating_6&limit=100";
+import InfiniteScroll from 'react-infinite-scroller';
+
 
 class Sh_vi extends Component {
     constructor(props){
@@ -15,8 +16,8 @@ class Sh_vi extends Component {
             clanData2: [],
             isLoading: true,
         }
-
         this.generateData = this.generateData.bind(this);
+        this.loadData = this.loadData.bind(this);
 
     }
 
@@ -30,7 +31,7 @@ class Sh_vi extends Component {
                 clans.push(res.data.data[el]);
             })
         );
-        console.log(clans);
+        // console.log(clans);
         return clans;
     };
 
@@ -44,28 +45,33 @@ class Sh_vi extends Component {
                 clans2.push(res.data.data[el]);
             })
         );
-        console.log(clans2);
+        // console.log(clans2);
         return clans2;
     };
 
     
+    async loadData(page){
+        const url = `https://api.worldoftanks.eu/wot/clanratings/top/?application_id=f8ffb59743e6046de8f37f8d0daf6dc5&rank_field=fort_elo_rating_6&page_no=${page}&limit=10`;
 
-
-
-    async componentDidMount(){
-
-        const res = await axios.get(API_URL);
+        const res = await axios.get(url);
         let pArr = res.data.data;
 
         const dataArr = pArr.map((el) => {
             return el.clan_id;
             });
-
         const clans = await this.fetchClans(dataArr);
         const clans2 = await this.fetchClans2(dataArr);
 
-        this.setState({data: res.data.data , clanData: clans, isLoading: false, clanData2: clans2, clanIdList: dataArr  })
+        
 
+       this.setState({data: res.data.data , clanData: clans, isLoading: false, clanData2: clans2, clanIdList: dataArr  })
+        
+    }
+
+
+    async componentDidMount(){
+        this.loadData(1);
+     
     }
 
 
@@ -126,9 +132,17 @@ class Sh_vi extends Component {
         
         return (
             <div className="mainBox">
-               
-            
-                {clans}
+               <div>
+               <InfiniteScroll
+                    pageStart={1}
+                    loadMore={this.loadData}
+                    hasMore={true || false}
+                    loader={<div className="loader" key={0}></div>}
+                    
+                >
+                    {clans}
+                </InfiniteScroll>
+                </div>
                 
                 
             </div>
