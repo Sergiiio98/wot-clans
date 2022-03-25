@@ -10,11 +10,14 @@ class Sh_vi extends Component {
         super(props);
      
         this.state = {
+            clans: [],
             data: [],
             clanIdList: [],
             clanData: [],
             clanData2: [],
             isLoading: true,
+            counter: 0,
+            hasMore: true,
         }
         this.generateData = this.generateData.bind(this);
         this.loadData = this.loadData.bind(this);
@@ -62,20 +65,34 @@ class Sh_vi extends Component {
         const clans = await this.fetchClans(dataArr);
         const clans2 = await this.fetchClans2(dataArr);
 
-        
 
        this.setState({data: res.data.data , clanData: clans, isLoading: false, clanData2: clans2, clanIdList: dataArr  })
-        
+       this.renderData();
     }
 
+    renderData(){
+        let data = this.generateData();
+        // console.log(data);
+        const clans = data.map((el, idx) => {
+            this.setState({counter: this.state.counter + 1});
+            if (this.state.counter == 100){
+                this.setState({hasMore: false});
+            }
+            return <Clan clanName={el.clanTag} clanRank={this.state.counter} clanElo={el.clanElo} logo={el.clanLogo} color={el.clanColor} clanBattles={el.clanBattles} clanWinrate={(Math.round((el.shWins)/(el.clanBattles)*100)/100)*100}   />;
+        });
+        
+        this.setState({clans: [...this.state.clans, clans ] });       
+    }
 
     async componentDidMount(){
-        this.loadData(1);
+        await this.loadData(1);
      
     }
 
+    componentDidUpdate(){
+        console.log(this.state.clans);
+    }
 
-    
     generateData(){
         let clanData2 = [];
         const clans = this.state.data.map((el, idx) => {
@@ -100,29 +117,24 @@ class Sh_vi extends Component {
        return clanData2;
     }
 
-
     render() {
 
-        let data = this.generateData();
-        console.log(data);
 
         function apiInfo(){
             return (
             <div>
-                <h5 style={{color:'white'}}>due to API overload estimated loading time is about 10-20 sec</h5>
+                {/* <h5 style={{color:'white'}}>due to API overload estimated loading time is about 10-20 sec</h5> */}
             </div>
             )
         }
 
-        const clans = data.map((el, idx) => {
-            return <Clan clanName={el.clanTag} clanRank={idx+1} clanElo={el.clanElo} logo={el.clanLogo} color={el.clanColor} clanBattles={el.clanBattles} clanWinrate={(Math.round((el.shWins)/(el.clanBattles)*100)/100)*100}   />;
-        });
+    //   console.log(this.state.clans);
 
         if(this.state.isLoading === true){
             return(
                 <div>
                 <div className="loadbox">
-                    <div class="loader"></div>
+                    <div className="loader"></div>
                 </div>
                 {apiInfo()}
                 </div>
@@ -136,11 +148,11 @@ class Sh_vi extends Component {
                <InfiniteScroll
                     pageStart={1}
                     loadMore={this.loadData}
-                    hasMore={true || false}
-                    loader={<div className="loader" key={0}></div>}
+                    hasMore={this.state.hasMore}
+                    loader={<div style={{color: 'white'}} className="loader2" key={0}>Loading...</div>}
                     
                 >
-                    {clans}
+                    {this.state.clans}
                 </InfiniteScroll>
                 </div>
                 

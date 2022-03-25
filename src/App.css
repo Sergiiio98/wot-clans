@@ -27,6 +27,14 @@
 
 }
 
+.loader2{
+  background-color: #000000;
+}
+
+.disabled{
+  background-color: rgb(173, 113, 0);
+}
+
 .ScrollDiv{
   overflow-y: scroll; 
   height:92vh;

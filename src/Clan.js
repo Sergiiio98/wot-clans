@@ -8,17 +8,9 @@ class Clan extends Component {
         
     }
 
-   
-    
     render() {
-       
-
-
-        
-        
         return (
             <div className="ClanRow">
-                
                 <div className="box">
                     <h5 id="number">{this.props.clanRank}</h5>
                 </div>
@@ -37,8 +29,6 @@ class Clan extends Component {
                 <div className="box">
                 <h5>{this.props.clanWinrate + "%"}</h5>
                 </div>
-
-                
             </div>
           );
     }

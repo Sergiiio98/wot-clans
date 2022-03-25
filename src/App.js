@@ -9,8 +9,8 @@ function App() {
     <div className="App">
       <div className="topBar">
         <h1>Klasyfikacja klanów pod względem Elo</h1>
-        <button>X</button>
-        <button id="VIII">VIII</button>
+        <button className='disabled' disabled>X</button>
+        <button className='disabled' disabled id="VIII">VIII</button>
         <button>VI</button>
       </div>
       <div className="label">
