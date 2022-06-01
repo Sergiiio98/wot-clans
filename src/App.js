@@ -1,6 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
-import Sh_vi from "./Sh_vi"
+import Sh_vi from "./components/Sh_vi/Sh_vi"
+
 
 
 
@@ -9,17 +9,9 @@ function App() {
     <div className="App">
       <div className="topBar">
         <h1>Klasyfikacja klanów pod względem Elo</h1>
-        <button className='disabled' disabled>X</button>
-        <button className='disabled' disabled id="VIII">VIII</button>
-        <button>VI</button>
+        
       </div>
-      <div className="label">
-        <h5>lp.</h5>
-
-        <h5 className="labelbar">elo rating</h5>
-        <h5>28d</h5>
-        <h5>WR %</h5>
-      </div>
+      
       <div className="ScrollDiv">
         <Sh_vi/>
       </div>
@@ -28,3 +20,6 @@ function App() {
 }
 
 export default App;
+
+
+
