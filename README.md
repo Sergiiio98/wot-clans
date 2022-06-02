@@ -2,6 +2,7 @@
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Setup](#setup)
+* [Deployed App](#deployed-app)
 * [Project Status](#project-status)
 
 
@@ -29,6 +30,10 @@ $ cd wot-clans
 $ npm install
 $ npm start
 ```
+
+## Deployed App
+
+Here is the link to deployed app: https://wot-clans.vercel.app
 
 ## Project Status
 
