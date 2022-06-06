@@ -1,20 +1,13 @@
 import './App.css';
-import Sh_vi from "./components/Sh_vi/Sh_vi"
-
-
-
+import Stronghold from "./components/Stronghold/Stronghold";
 
 function App() {
+
+  
+
   return (
     <div className="App">
-      <div className="topBar">
-        <h1>Klasyfikacja klanów pod względem Elo</h1>
-        
-      </div>
-      
-      <div className="ScrollDiv">
-        <Sh_vi/>
-      </div>
+      <Stronghold/>
     </div>
   );
 }

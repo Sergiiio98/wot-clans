@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Sh_vi.css'
+import './ClanList.css'
 import axios from 'axios';
 import Clan from '../Clan/Clan';
 import InfiniteScroll from 'react-infinite-scroller';
@@ -7,12 +7,11 @@ import InfiniteScroll from 'react-infinite-scroller';
 class Sh_vi extends Component {
     constructor(props){
         super(props);
-        // Tier state
+        // Tier props
         // 0 represents VI tier
         // 1 == VIII tier
         // 2 == X tier
         this.state = {
-            TierState: 2,
             clans: [],
             data: [],
             clanIdList: [],
@@ -24,27 +23,6 @@ class Sh_vi extends Component {
         }
         this.generateData = this.generateData.bind(this);
         this.loadData = this.loadData.bind(this);
-        this.setTierToVI = this.setTierToVI.bind(this);
-        this.setTierToVIII = this.setTierToVIII.bind(this);
-        this.setTierToX = this.setTierToX.bind(this);
-    }
-
-    setTierToVI(){
-        this.setState({clans: []});
-        this.setState({counter: 0});
-        this.loadData(1,0);
-    }
-    
-    setTierToVIII(){
-        this.setState({clans: []});
-        this.setState({counter: 0});
-        this.loadData(1, 1);
-
-    }
-    setTierToX(){
-        this.setState({clans: []});
-        this.setState({counter: 0});
-        this.loadData(1,2);
     }
 
     fetchClans = async (arr) => {
@@ -70,14 +48,14 @@ class Sh_vi extends Component {
     };
 
     
-    async loadData(page, tierState = 2){
+    async loadData(page){
         const TierUrl = [
             `https://api.worldoftanks.eu/wot/clanratings/top/?application_id=f8ffb59743e6046de8f37f8d0daf6dc5&rank_field=fort_elo_rating_6&page_no=${page}&limit=10`,
             `https://api.worldoftanks.eu/wot/clanratings/top/?application_id=f8ffb59743e6046de8f37f8d0daf6dc5&rank_field=fort_elo_rating_8&page_no=${page}&limit=10`,
             `https://api.worldoftanks.eu/wot/clanratings/top/?application_id=f8ffb59743e6046de8f37f8d0daf6dc5&rank_field=fort_elo_rating_10&page_no=${page}&limit=10`
         ]
 
-        let url = TierUrl[tierState];
+        let url = TierUrl[this.props.tierState];
         const res = await axios.get(url);
         let pArr = res.data.data;
 
@@ -89,7 +67,7 @@ class Sh_vi extends Component {
         const clans2 = await this.fetchClans2(dataArr);
 
        this.setState({data: res.data.data , clanData: clans, isLoading: false, clanData2: clans2, clanIdList: dataArr  })
-       this.renderData(tierState);
+       this.renderData(this.props.tierState);
     }
 
     renderData(number=0){
@@ -98,12 +76,11 @@ class Sh_vi extends Component {
             this.setState({counter: this.state.counter + 1});
             return <Clan clanName={el.clanTag} clanRank={this.state.counter} clanElo={el.clanElo} logo={el.clanLogo} color={el.clanColor} clanBattles={el.clanBattles} clanWinrate={(Math.round((el.shWins)/(el.clanBattles)*100)/100)*100}   />;
         });
-        
-        this.setState({clans: [...this.state.clans, clans ] });       
+        this.setState({clans: [...this.state.clans, clans] });     
     }
 
     async componentDidMount(){
-        await this.loadData(1,2);
+        await this.loadData(1,this.props.tierState);
     }
 
     generateData(number){
@@ -177,17 +154,6 @@ class Sh_vi extends Component {
         
         return (
             <div>
-                <button onClick={this.setTierToX}>X</button>
-                <button onClick={this.setTierToVIII} id="VIII">VIII</button>
-                <button onClick={this.setTierToVI}>VI</button>
-
-                <div className="label">
-                    <h5>lp.</h5>
-                    <h5 className="labelbar">elo rating</h5>
-                    <h5>28d</h5>
-                    <h5>WR %</h5>
-                </div>
-
                 <div className="mainBox">
                 
                     <div style={{height: "700px" ,overflow:"auto"}} ref={(ref) => this.scrollParentRef = ref}>
