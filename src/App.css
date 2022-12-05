@@ -1,45 +1,6 @@
-.App {
-  text-align: center;
-  height: 100vh;
-  background-color: #000000;
-  border-radius: 5px;
-  margin-top: 20%;
-}
-
-.divbox{
+.divbox {
   color: aliceblue;
 }
-
-
-
-.label{
-  display: flex;
-  padding-left: 93px;
-  margin-bottom: 10px;
-}
-
-.labelbar{
-  margin-left: 160px;
-}
-
-.label h5{
-  width: 80px;
-
-}
-
-.loader2{
-  background-color: #000000;
-}
-
-.disabled{
-  background-color: rgb(173, 113, 0);
-}
-
-.ScrollDiv{
-  overflow-y: scroll; 
-  height:92vh;
-}
-
 
 html::-webkit-scrollbar {
   display: none; /* for Chrome, Safari, and Opera */
@@ -47,30 +8,4 @@ html::-webkit-scrollbar {
 
 .ScrollDiv::-webkit-scrollbar {
   display: none; /* for Chrome, Safari, and Opera */
-}
-
-h1{
- margin: 0px 50px 50px 50px;
- padding-top: 7%;
-
-  margin-bottom: 50px;
-  color: white;
-}
-
-button{
-  background-color: orange;
-  border: none;
-  width: 10.5em;
-  height: 2em;
-  font-weight: 700;
-  margin-bottom: 7%;
-}
-
-#VIII{
-  margin-left: 2.5em;
-  margin-right: 2.5em;
-}
-
-.topBar{
-  background-color: black;
 }
